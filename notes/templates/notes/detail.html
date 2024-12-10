@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ note.title }}</title>
-</head>
-<body>
-    <h1>{{ note.title }}</h1>
-    <p>{{ note.content }}</p>
-    <a href="/">Back to Notes</a>
-</body>
-</html>
+{% extends 'notes/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2 class="h5">{{ note.title }}</h2>
+    </div>
+    <div class="card-body">
+        <p>{{ note.content }}</p>
+        <a href="/" class="btn btn-outline-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}
