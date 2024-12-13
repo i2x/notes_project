@@ -52,6 +52,9 @@ def show_datetime(request):
     now = datetime.now()
     return JsonResponse({"current_datetime": now.strftime("%Y-%m-%d %H:%M:%S")})
 
+
+
+
 def show_directory_listing(request):
     """Route to display directory contents and render file content as text."""
     base_dir = os.getcwd()  # Base directory
@@ -72,6 +75,7 @@ def show_directory_listing(request):
                 return render(request, 'notes/file_view.html', {
                     'file_name': os.path.basename(directory),
                     'content': content,
+                    'current_time': datetime.now(),  # Add server time
                 })
             except Exception as e:
                 # Return error message for unreadable files
@@ -91,6 +95,8 @@ def show_directory_listing(request):
             'directory': directory,
             'items': items,
             'parent': os.path.dirname(directory) if directory != base_dir else None,
+            'current_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Format to 24-hour
+
         }
         return render(request, 'notes/directory_listing.html', context)
 
